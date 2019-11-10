@@ -1,0 +1,6 @@
+import { XL_FOCUS_BG_TEAL_100 } from "./index";
+export const xl_focus_bg_teal_100 = `&:focus {
+@media (min-width: 1280px) {
+background-color: #e6fffa;
+}
+}` as XL_FOCUS_BG_TEAL_100;

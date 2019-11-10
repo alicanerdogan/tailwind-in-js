@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "8"
+cache:
+  yarn: true
+install:
+  - yarn
+script:
+  - yarn test
+  - yarn build
+branches:
+  only:
+    - master
+    - "/^v\\d+\\.\\d+.*$/"
+deploy:
+  provider: npm
+  email: aerdogan07@gmail.com
+  api_key:
+    secure: j0Ch0/lFowALWEIphSnzS6QOwLmXzC1CHtlsPW51e6z6e62Ucn3eI4LfeZTJ71EpubzHnZh9PNkoZAoiTRTV3dXAhxyump3TuG7NiqzPBic9Oo0V/CbA3bKNfEPxJU+qhHojESmjxGQZFZ4s42g8WOr+PHYCh06P42ctA244oqNQSmlv+k9bTsQ1gFLvct+CnLTbZTvcCslDO6sCZH7ZuKXh/qUNyfsAuVsu98JDvJ7dSCpRTmIvEj0MTcw2IzWgB0eUmOoii+aL26TU7GOPwZXXeUPJY9yLMoyhdvGgHu0GGRIUFUQ/F50J9aGSFCxhWgun51mDGuRU3ouxYARQj5QHmoRtVlkB2xzIAcs5oJhLXS2h0bfFDOq4D8AznStMP77fKEPxtVb0MFx5dZW1STRzdIIAeLXOn+iM2NjtyItpNm4936ntlZ2gvVo2tAGr6zsi2VSzPBrH3VfCP4mRYhk43pQ7XIoRYc925JC4N0ZsQEU/WjIUfY7pBjwWivdwW/gjhcuIf01qcBr2xVW7l2Ifv5SMSyVubKp1Qu2qxlA4PT0J/gL8qTwqx/ehz97cqr+WPyFnRE3EldAX5ZwEfypVbAuhfRCdpj7O6gA9uD0cG7nsteYfYpeUNSXo/Q3ssq+9JLlyLEWrQuoygaGchOu0IHSb2Y77lXQ1VDJJKxk=
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: alicanerdogan/tailwind-in-js

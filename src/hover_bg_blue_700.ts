@@ -1,0 +1,4 @@
+import { HOVER_BG_BLUE_700 } from "./index";
+export const hover_bg_blue_700 = `&:hover {
+background-color: #2b6cb0;
+}` as HOVER_BG_BLUE_700;
