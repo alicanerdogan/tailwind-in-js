@@ -1,6 +1,0 @@
-import { XL_FOCUS_BORDER_PURPLE_500 } from "./index";
-export const xl_focus_border_purple_500 = `&:focus {
-@media (min-width: 1280px) {
-border-color: #9f7aea;
-}
-}` as XL_FOCUS_BORDER_PURPLE_500;

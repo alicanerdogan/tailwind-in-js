@@ -1,4 +1,0 @@
-import { SM_M_8 } from "./index";
-export const sm_m_8 = `@media (min-width: 640px) {
-margin: 2rem;
-}` as SM_M_8;

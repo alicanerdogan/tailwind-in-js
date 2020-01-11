@@ -1,6 +1,0 @@
-import { MD_HOVER_BG_YELLOW_500 } from "./index";
-export const md_hover_bg_yellow_500 = `&:hover {
-@media (min-width: 768px) {
-background-color: #ecc94b;
-}
-}` as MD_HOVER_BG_YELLOW_500;
