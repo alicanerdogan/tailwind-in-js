@@ -1,5 +1,3 @@
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import pkg from "./package.json";
 
@@ -15,7 +13,7 @@ export default [
   //   plugins: [
   //     resolve(), // so Rollup can find `react`
   //     commonjs(), // so Rollup can convert `react` to an ES module
-  //     typescript({ verbosity: 2, tsconfig: "config/build/tsconfig.json" }) // so Rollup can convert TypeScript to JavaScript
+  //     typescript({ tsconfig: "config/build/tsconfig.json" }) // so Rollup can convert TypeScript to JavaScript
   //   ]
   // },
 
@@ -28,7 +26,7 @@ export default [
   {
     input: "out/index.ts",
     plugins: [
-      typescript({ verbosity: 2, tsconfig: "config/build/tsconfig.json" }) // so Rollup can convert TypeScript to JavaScript
+      typescript({ tsconfig: "config/build/tsconfig.json" }) // so Rollup can convert TypeScript to JavaScript
     ],
     output: [
       { file: pkg.main, format: "cjs" },

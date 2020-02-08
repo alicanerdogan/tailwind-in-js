@@ -19,7 +19,9 @@ function buildDistFile(filename) {
           map: { inline: false }
         })
         .then(result => {
-          fs.mkdirSync(`./out`);
+          try {
+            fs.mkdirSync(`./out`);
+          } catch (error) {}
           fs.writeFileSync(`./out/${filename}.css`, result.css);
           return result;
         })
