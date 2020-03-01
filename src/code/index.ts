@@ -1,6 +1,6 @@
-import css from "css";
-import fs from "fs";
-import util from "util";
+import * as css from "css";
+import * as fs from "fs";
+import * as util from "util";
 import { generateCode } from "./generateCode";
 
 const readFile = util.promisify(fs.readFile);
@@ -140,8 +140,11 @@ function generateSelectorMap(rules: css.Rule[]) {
   return selectorMap;
 }
 
-async function parseCSS() {
-  const cssFile = await readFile("./out/tailwind.css");
+export async function parseCSS(
+  tailwindCss = "./out/tailwind.css",
+  outDirPath?: string
+) {
+  const cssFile = await readFile(tailwindCss);
   const stylesheet = css.parse(cssFile.toString());
   if (!stylesheet.stylesheet) {
     return;
@@ -166,8 +169,7 @@ async function parseCSS() {
 
   await generateCode(
     Array.from(map.values()),
-    Array.from(globalTypesMap.values())
+    Array.from(globalTypesMap.values()),
+    outDirPath
   );
 }
-
-parseCSS();

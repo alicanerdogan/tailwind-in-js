@@ -1,7 +1,7 @@
 import { CSSType } from "./index";
-import fs from "fs";
-import util from "util";
-import path from "path";
+import * as fs from "fs";
+import * as util from "util";
+import * as path from "path";
 
 const writeFile = util.promisify(fs.writeFile);
 const mkdir = util.promisify(fs.mkdir);
@@ -125,7 +125,11 @@ export function extendCss<
 }
 `;
 
-export async function generateCode(types: CSSType[], globalTypes: CSSType[]) {
+export async function generateCode(
+  types: CSSType[],
+  globalTypes: CSSType[],
+  outDir: string = "./out"
+) {
   const parsedCSSTypes = types.map(type => {
     const selector = parseSelector(type.selector);
     const functionName = getFunctionName(selector);
@@ -154,9 +158,9 @@ export async function generateCode(types: CSSType[], globalTypes: CSSType[]) {
   const classTypeDefinition = `export type TWClasses = ${allReturnTypes.join(
     " |\n"
   )};`;
-  const mainFunction = `/// <reference path="references.ts" />\n${typeDefinitions}\n${classTypeDefinition}\nexport function tw(classes: TWClasses[]) {return classes.join("\\n");}\n`;
+  const mainFunction = `${typeDefinitions}\n${classTypeDefinition}\nexport function tw(classes: TWClasses[]) {return classes.join("\\n");}\n`;
 
-  const rootPath = "./out";
+  const rootPath = outDir;
   await mkdir(rootPath, { recursive: true });
 
   await writeFile(

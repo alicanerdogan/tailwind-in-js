@@ -1,0 +1,3 @@
+import { parseCSS } from ".";
+
+parseCSS();
