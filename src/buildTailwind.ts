@@ -18,7 +18,7 @@ function buildDistFile(
         .process(css, {
           from: `./node_modules/tailwindcss/${filename}.css`,
           to: `./${filename}.css`,
-          map: { inline: false }
+          map: { inline: false },
         })
         .then((result: any) => {
           try {

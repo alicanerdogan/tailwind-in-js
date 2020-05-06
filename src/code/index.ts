@@ -41,7 +41,7 @@ function convertDeclarationIntoString(cssDeclaration: css.Declaration) {
 
 function convertDeclarationsIntoString(cssDeclarations: css.Declaration[]) {
   return cssDeclarations
-    .filter(cssDeclaration => cssDeclaration.type === "declaration")
+    .filter((cssDeclaration) => cssDeclaration.type === "declaration")
     .map(convertDeclarationIntoString)
     .join("\n");
 }
@@ -51,7 +51,7 @@ function assertUnprocessedDeclarations(
   cssDeclarations: css.Declaration[]
 ) {
   const unprocessedDeclarations = cssDeclarations.filter(
-    cssDeclaration => cssDeclaration.type !== "declaration"
+    (cssDeclaration) => cssDeclaration.type !== "declaration"
   );
   if (unprocessedDeclarations.length > 0) {
     console.warn(
@@ -78,9 +78,9 @@ function generateCSSType(
     rules: [
       {
         mediaQuery,
-        value: getCSSRuleAsString(selector, cssDeclarations)
-      }
-    ]
+        value: getCSSRuleAsString(selector, cssDeclarations),
+      },
+    ],
   };
 }
 
@@ -126,10 +126,12 @@ function generateCSSTypes(
 
 function generateSelectorMap(rules: css.Rule[]) {
   const selectorMap = new Map<string, css.Declaration[]>();
-  rules.forEach(rule => {
+  rules.forEach((rule) => {
     const selectors: string[] = rule.selectors || [];
-    selectors.forEach(selector => {
-      if (["-ms-input"].some(vendorPrefix => selector.includes(vendorPrefix))) {
+    selectors.forEach((selector) => {
+      if (
+        ["-ms-input"].some((vendorPrefix) => selector.includes(vendorPrefix))
+      ) {
         return;
       }
       const list = selectorMap.get(selector) || [];
@@ -159,7 +161,7 @@ export async function parseCSS(
   generateGlobalCSSTypes(globalTypesMap, selectorMap);
 
   const allMediaRules = stylesheet.stylesheet.rules.filter(isMediaRule);
-  allMediaRules.forEach(mediaRules => {
+  allMediaRules.forEach((mediaRules) => {
     const selectorMap = generateSelectorMap(
       (mediaRules.rules || []).filter(isCSSRule)
     );

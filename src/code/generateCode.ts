@@ -23,19 +23,20 @@ function parseSelector(selector: string): Selector {
   return {
     prefix: prefix.reverse(),
     name,
-    pseudo
+    pseudo,
   };
 }
 
 function getFunctionName(selector: Selector) {
   const tokens = [...selector.prefix, selector.name];
   const functionName = tokens
-    .map(token =>
+    .map((token) =>
       token
         .replace(new RegExp("-", "g"), "_")
         .replace(new RegExp("\\\\/", "g"), "_")
     )
-    .join("_");
+    .join("_")
+    .replace("_>_:not(template)_~_", "");
   const RESERVED_KEYWORDS = new Set(["static"]);
   if (RESERVED_KEYWORDS.has(functionName)) {
     return functionName + "_";
@@ -74,9 +75,9 @@ interface ParsedCSSType {
 
 function generateGlobalStyle(globalTypes: CSSType[]): string {
   const globalStyles = globalTypes
-    .map(type => {
+    .map((type) => {
       return `${type.selector} {\n${type.rules
-        .map(r => wrapWithMediaQuery(r.mediaQuery, r.value))
+        .map((r) => wrapWithMediaQuery(r.mediaQuery, r.value))
         .join("\n")}}`;
     })
     .join("\n");
@@ -130,13 +131,13 @@ export async function generateCode(
   globalTypes: CSSType[],
   outDir: string = "./out"
 ) {
-  const parsedCSSTypes = types.map(type => {
+  const parsedCSSTypes = types.map((type) => {
     const selector = parseSelector(type.selector);
     const functionName = getFunctionName(selector);
     const returnType = getType(functionName);
 
     const rulesAsString = type.rules
-      .map(rule => wrapWithMediaQuery(rule.mediaQuery, rule.value))
+      .map((rule) => wrapWithMediaQuery(rule.mediaQuery, rule.value))
       .join("\n");
 
     const code = `export const ${functionName} = \`${wrapWithPseudoSelector(
@@ -147,13 +148,13 @@ export async function generateCode(
     return {
       returnType,
       functionName,
-      code
+      code,
     } as ParsedCSSType;
   });
 
-  const allReturnTypes = parsedCSSTypes.map(type => type.returnType);
+  const allReturnTypes = parsedCSSTypes.map((type) => type.returnType);
   const typeDefinitions = allReturnTypes
-    .map(type => `export type ${type} = "${type}";`)
+    .map((type) => `export type ${type} = "${type}";`)
     .join("\n");
   const classTypeDefinition = `export type TWClasses = ${allReturnTypes.join(
     " |\n"
@@ -170,11 +171,11 @@ export async function generateCode(
       ,
       mainFunction,
       parsedCSSTypes
-        .map(parsed => {
+        .map((parsed) => {
           return parsed.code;
         })
         .join("\n"),
-      HELPER_FUNCTIONS
+      HELPER_FUNCTIONS,
     ].join("\n")
   );
 }

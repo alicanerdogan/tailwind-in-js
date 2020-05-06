@@ -1,6 +1,6 @@
 {
   "name": "tailwind-in-js",
-  "version": "1.2.0-beta.0",
+  "version": "1.4.5",
   "author": "Alican Erdogan",
   "license": "MIT",
   "repository": {
@@ -16,27 +16,27 @@
   },
   "dependencies": {
     "css": "^2.2.4",
-    "postcss": "^7.0.26",
-    "tailwindcss": "^1.2.0"
+    "postcss": "^7.0.29",
+    "tailwindcss": "^1.4.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
     "@babel/plugin-transform-async-to-generator": "^7.8.3",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/preset-typescript": "^7.8.3",
-    "@babel/runtime": "^7.8.4",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
+    "@babel/runtime": "^7.9.6",
     "@types/css": "^0.0.31",
-    "@types/node": "^13.7.0",
-    "prettier": "^1.19.1",
-    "rollup": "^1.31.0",
+    "@types/node": "^13.13.5",
+    "prettier": "^2.0.5",
+    "rollup": "^2.8.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-typescript2": "^0.25.3",
-    "ts-node": "^8.6.2",
-    "tslib": "^1.10.0",
-    "typescript": "^3.7.5"
+    "rollup-plugin-typescript2": "^0.27.0",
+    "ts-node": "^8.10.1",
+    "tslib": "^1.11.2",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "dev": "rollup -c -w",
